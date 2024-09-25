@@ -59,10 +59,11 @@ function which will map to the correct function depending on
 which character set you have compiled for. The table below
 demonstrates:
 
-| **#define** | **Compiled        Version** | **Example** |
+| **#define** | **Compiled Version** | **Example** |
+|:--- |:---|:---|
 | **\_UNICODE** | Unicode (wide-character) | **\_tcsrev** maps to **\_wcsrev** |
 | **\_MBCS** | Multibyte-character | **\_tcsrev** maps to **\_mbsrev** |
-| None (the default: neither **\_UNICODE**<br>        nor **\_MBCS** defined) | SBCS (ASCII) | **\_tcsrev** maps to **strrev** |
+| None (the default: neither **\_UNICODE** nor **\_MBCS** defined) | SBCS (ASCII) | **\_tcsrev** maps to **strrev** |
 
 Each `str*` function has a corresponding `tcs*`
 function that should be used instead. See the TCHAR.H file for
@@ -101,17 +102,12 @@ format. Possible conversion formats are shown in the following
 table.
 
 | String Type | Abbreviation |
-| --- | --- |
-
-    | ASCII (LPSTR) | A |
-
-    | WIDE (LPWSTR) | W |
-
-    | OLE (LPOLESTR) | OLE |
-
-    | Generic (LPTSTR) | T |
-
-    | Const | C |
+|:--- |:--- |
+| ASCII (LPSTR) | A |
+| WIDE (LPWSTR) | W |
+| OLE (LPOLESTR) | OLE |
+| Generic (LPTSTR) | T |
+| Const | C |
 
 Thus, `A2W` converts an `LPSTR` to an `LPWSTR`,
 `OLE2T` converts an `LPOLESTR` to an `LPTSTR`, and
@@ -150,7 +146,7 @@ Two caveats on using the conversion macros:
         function that returns an LPOLESTR, then do not do the
         following:
 
-    ```
+    ```cpp
     LPTSTR BadReturn(LPSTR lpsz)
     {
         USES_CONVERSION;
@@ -163,7 +159,7 @@ Two caveats on using the conversion macros:
         which would imply a copy of the string would be made
         before the function returns: 
 
-    ```
+    ```cpp
     CString GoodReturn(LPSTR lpsz)
     {
         USES_CONVERSION;
